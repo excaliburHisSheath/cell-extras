@@ -70,7 +70,7 @@ impl<T> InitCell<T> {
     /// let cell = InitCell::<usize>::new();
     /// ```
     #[inline]
-    pub const fn new() -> InitCell<T> {
+    pub fn new() -> InitCell<T> {
         InitCell(UnsafeCell::new(None))
     }
 

@@ -2,5 +2,3 @@
 name = "cell-extras"
 version = "0.1.0"
 authors = ["David LeGare <excaliburhissheath@gmail.com>"]
-
-[dependencies]

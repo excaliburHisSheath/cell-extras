@@ -42,6 +42,6 @@
 //! [refcell]: https://doc.rust-lang.org/std/cell/struct.RefCell.html
 //! [rwlock]: https://doc.rust-lang.org/std/sync/struct.RwLock.html
 
-#![feature(const_fn)]
+pub use init_cell::InitCell;
 
 pub mod init_cell;
