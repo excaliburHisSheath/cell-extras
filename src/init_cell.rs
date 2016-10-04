@@ -16,7 +16,7 @@ use std::ops::{Deref, DerefMut};
 /// Basic usage:
 ///
 /// ```
-/// use cell_extras::init_cell::InitCell;
+/// use cell_extras::InitCell;
 ///
 /// // Create a new `InitCell<String>`.
 /// let mut cell = InitCell::<String>::new();
@@ -36,7 +36,7 @@ use std::ops::{Deref, DerefMut};
 /// Lazily initialize a thread-local static:
 ///
 /// ```
-/// use cell_extras::init_cell::InitCell;
+/// use cell_extras::InitCell;
 /// use std::thread;
 ///
 /// thread_local! {
@@ -65,7 +65,7 @@ impl<T> InitCell<T> {
     /// # Examples
     ///
     /// ```
-    /// use cell_extras::init_cell::InitCell;
+    /// use cell_extras::InitCell;
     ///
     /// let cell = InitCell::<usize>::new();
     /// ```
@@ -83,7 +83,7 @@ impl<T> InitCell<T> {
     /// # Examples
     ///
     /// ```
-    /// use cell_extras::init_cell::InitCell;
+    /// use cell_extras::InitCell;
     ///
     /// let cell = InitCell::<usize>::new();
     /// assert_eq!(None, cell.get());
@@ -117,7 +117,7 @@ impl<T> InitCell<T> {
     /// # Examples
     ///
     /// ```
-    /// use cell_extras::init_cell::InitCell;
+    /// use cell_extras::InitCell;
     ///
     /// let cell = InitCell::<usize>::new();
     /// assert_eq!(None, cell.get());
@@ -139,7 +139,7 @@ impl<T> InitCell<T> {
     /// # Examples
     ///
     /// ```
-    /// use cell_extras::init_cell::InitCell;
+    /// use cell_extras::InitCell;
     ///
     /// let mut cell = InitCell::<usize>::new();
     /// assert_eq!(None, cell.get());

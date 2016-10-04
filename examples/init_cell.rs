@@ -1,6 +1,6 @@
 extern crate cell_extras;
 
-use cell_extras::init_cell::InitCell;
+use cell_extras::InitCell;
 
 fn main() {
     thread_local! {
