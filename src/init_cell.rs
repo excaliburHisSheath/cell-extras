@@ -8,6 +8,15 @@ pub struct InitCell<T>(UnsafeCell<Option<T>>);
 
 impl<T> InitCell<T> {
     /// Create a new, uninitialized `InitCell<T>`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use cell_extras::init_cell::InitCell;
+    ///
+    /// let cell = InitCell::<usize>::new();
+    /// ```
+    #[inline]
     pub const fn new() -> InitCell<T> {
         InitCell(UnsafeCell::new(None))
     }
@@ -17,6 +26,19 @@ impl<T> InitCell<T> {
     /// # Panics
     ///
     /// - If the cell has already been initialized.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use cell_extras::init_cell::InitCell;
+    ///
+    /// let cell = InitCell::<usize>::new();
+    /// assert_eq!(None, cell.get());
+    ///
+    /// cell.init(7);
+    /// assert_eq!(7, cell);
+    /// ```
+    #[inline]
     pub fn init(&self, value: T) {
         // It's safe to take a mutable reference to the data in here because
         // reasons:
@@ -61,3 +83,17 @@ impl<T> DerefMut for InitCell<T> {
 }
 
 unsafe impl<T: Send> Send for InitCell<T> {}
+
+#[cfg(test)]
+mod tests {
+    use init_cell::InitCell;
+
+    #[test]
+    fn init() {
+        let cell = InitCell::<usize>::new();
+        assert_eq!(None, cell.get());
+
+        cell.init(10);
+        assert_eq!(Some(&10), cell.get());
+    }
+}
