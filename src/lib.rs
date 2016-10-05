@@ -42,6 +42,8 @@
 //! [refcell]: https://doc.rust-lang.org/std/cell/struct.RefCell.html
 //! [rwlock]: https://doc.rust-lang.org/std/sync/struct.RwLock.html
 
+pub use atomic_ref_cell::AtomicRefCell;
 pub use init_cell::InitCell;
 
+pub mod atomic_ref_cell;
 pub mod init_cell;
