@@ -51,7 +51,7 @@ use std::ops::{Deref, DerefMut};
 ///
 ///         // ...
 ///
-///         // Use the thread-local as if it were just a `String` without worrying about
+///         // Use the thread-local as if it were just a `&String` without worrying about
 ///         // initialization status.
 ///         let local = LOCAL.with(|local| (&**local).clone());
 ///     });
@@ -191,5 +191,12 @@ mod tests {
 
         cell.init(10);
         assert_eq!(Some(&10), cell.get());
+    }
+
+    #[test]
+    #[should_panic]
+    fn uninit_panic() {
+        let cell = InitCell::<String>::new();
+        println!("{:?}", cell);
     }
 }
