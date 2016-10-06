@@ -11,6 +11,17 @@
 //!
 //! Here's a quick breakdown of each cell type and when it would be helpful:
 //!
+//! ### Use a `CloneCell<T>` when:
+//!
+//! - You want a [`Cell<T>`][cell] that can support [`Clone`][clone] and [`Drop`][drop] types.
+//! - Are willing to pay a small amount of runtime overhead (the same as [`RefCell<T>`][refcell])
+//!   over [`Cell<T>`][cell] for that functionality.
+//!
+//! ### Use an `AtomicCell<T>` when:
+//!
+//! - You want to use a thread-safe [`Cell<T>`][cell].
+//! - You want to use a thread-safe [`CloneCell<T>`][clonecell].
+//!
 //! ### Use an `InitCell<T>` when:
 //!
 //! - You have a non-optional value that can't be initialized when the object
@@ -28,10 +39,6 @@
 //!   able to access the data without checking if it's initialized.
 //! - You want to use a thread-safe `InitCell<T>`.
 //!
-//! ### Use an `AtomicCell<T>` when:
-//!
-//! - You want to use a thread-safe [`Cell<T>`][cell].
-//!
 //! ### Use an `AtomicRefCell<T>` when:
 //!
 //! - You want to use a [`RefCell<T>`][refcell] but need to to be thread-safe.
@@ -41,6 +48,8 @@
 //! [cell]: https://doc.rust-lang.org/std/cell/struct.Cell.html
 //! [refcell]: https://doc.rust-lang.org/std/cell/struct.RefCell.html
 //! [rwlock]: https://doc.rust-lang.org/std/sync/struct.RwLock.html
+//! [clone]: https://doc.rust-lang.org/std/clone/trait.Clone.html
+//! [drop]: https://doc.rust-lang.org/std/ops/trait.Drop.html
 
 pub use atomic_ref_cell::AtomicRefCell;
 pub use init_cell::InitCell;
