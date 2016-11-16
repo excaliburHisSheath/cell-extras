@@ -68,7 +68,7 @@ impl<T> AtomicRefCell<T> {
     ///
     /// let cell = AtomicRefCell::new(5);
     /// ```
-    pub fn new(value: T) -> AtomicRefCell<T> {
+    pub const fn new(value: T) -> AtomicRefCell<T> {
         AtomicRefCell {
             borrow: AtomicUsize::new(UNUSED),
             value: UnsafeCell::new(value),

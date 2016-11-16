@@ -51,8 +51,12 @@
 //! [clone]: https://doc.rust-lang.org/std/clone/trait.Clone.html
 //! [drop]: https://doc.rust-lang.org/std/ops/trait.Drop.html
 
+#![feature(const_fn)]
+
+pub use atomic_init_cell::AtomicInitCell;
 pub use atomic_ref_cell::AtomicRefCell;
 pub use init_cell::InitCell;
 
+pub mod atomic_init_cell;
 pub mod atomic_ref_cell;
 pub mod init_cell;
