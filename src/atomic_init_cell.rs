@@ -1,4 +1,5 @@
 use atomic_ref_cell::{AtomicRefCell, AtomicRef, AtomicRefMut};
+use std::fmt::{self, Debug, Formatter};
 
 pub struct AtomicInitCell<T>(AtomicRefCell<Option<T>>);
 
@@ -21,5 +22,12 @@ impl<T> AtomicInitCell<T> {
     pub fn borrow_mut(&self) -> AtomicRefMut<T> {
         let borrow = self.0.borrow_mut();
         AtomicRefMut::map(borrow, |maybe| maybe.as_mut().expect("Cannot borrow uninitialized `AtomicRefCell`"))
+    }
+}
+
+impl<T> Debug for AtomicInitCell<T> where T: Debug {
+    fn fmt(&self, formatter: &mut Formatter) -> Result<(), fmt::Error> {
+        let inner = self.borrow();
+        write!(formatter, "InitCell({:?})", &*inner)
     }
 }
